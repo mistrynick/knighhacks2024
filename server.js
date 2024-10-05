@@ -112,7 +112,7 @@ nextApp.prepare().then(() => {
         } 
         res.status(200).json({'message': "ok i got it"});
     });
-
+// asdf
 
     app.all('*', (req, res) => {
         return handle(req, res);
