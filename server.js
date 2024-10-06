@@ -37,6 +37,10 @@ app.use(cors({
     credentials: true
 }));
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
 
 const server = http.createServer(app);
 const io = socketIo(server);
