@@ -21,6 +21,7 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { AuthContext } from '/src/app/AuthContext.js';
 import Cards from '../Cards/Cards.js';
+import Image from 'next/image';
 
 
 function Homepage() {
