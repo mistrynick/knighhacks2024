@@ -7,7 +7,8 @@ class Recommender {
         this.data = []
         this.tfid_dict = {};
         this.vectorize_dict = [];
-        this.count_dict = {}
+        this.count_dict = {};
+        this.total_num = 0;
     }
 
 
@@ -18,17 +19,18 @@ class Recommender {
         this.tfid_fit_transform();
     }
     fix() {
-        this.rawdata.forEach((item)=> {
-            let words = item.Description;
-            const wordsArray = words.toLowerCase().split(/\s+/)
-            let obj = item;
-            obj['Description'] = wordsArray;
-            this.data.push(obj)
-        })
+        this.rawdata.forEach((item) => {
+            
+            let words = item.Description.replace(/[^a-zA-Z\s]/g, '');
+            const wordsArray = words.toLowerCase().split(/\s+/);
+            let obj = { ...item };
+            obj['tokens'] = wordsArray;
+            this.data.push(obj);
+        });
     }
     CountVectorizer() {
         this.data.forEach((item) => {
-            let words = item.Description;
+            let words = item.tokens;
              words.forEach((word) => {
                  if (this.count_dict.hasOwnProperty(word)) {
                      this.count_dict[word]+=1;
@@ -41,7 +43,7 @@ class Recommender {
     }
     tfid_vectorize() {
         this.data.forEach((item) => {
-            let words = item.Description;
+            let words = item.tokens;
             const tfid_vector = {};
             words.forEach((word) => {
                 if (this.tfid_dict.hasOwnProperty(word)) {
@@ -77,7 +79,7 @@ class Recommender {
         let results = [];
         let ret = [];
         this.vectorize_dict.forEach((doc_vector, index) => {
-            const score = this.cosine_simularity(vector, doc_vector);
+            let score = this.cosine_simularity(vector, doc_vector);
             results.push({ index: index, score: score });
         });
         results.sort((a, b) => b.score - a.score);
@@ -94,6 +96,7 @@ class Recommender {
     recommend(term) {
 
         const search_vector = this.tfid_transform(term);
+        
         const ret = this.filterAndSort(search_vector,100,0.0);
         let combinedRet = ret;
         
@@ -113,15 +116,20 @@ class Recommender {
     }
 
     tfid_transform(term) {
-        const tokens = term.toLowerCase().split(/\s+/);
+        let words = term.replace(/[^a-zA-Z\s]/g, '');
+        const tokens = words.toLowerCase().split(/\s+/);
+    
         const term_tfid = {};
 
         tokens.forEach((word) => {
+        
             if (this.tfid_dict.hasOwnProperty(word)) {
+
                 if (!term_tfid.hasOwnProperty(word)) {
                     term_tfid[word] = this.tfid_dict[word];
                 } else {
                     term_tfid[word] += this.tfid_dict[word];
+                    
                 }
                 
             } else {
@@ -139,13 +147,13 @@ const Engine = new Recommender();
 parentPort.on('message', (msg) => {
     if (msg.type == "start") {
         const { data } = msg.task;
-        console.log(data);
         Engine.start(data);
         parentPort.postMessage({ type: 'loaded' });
     } else if (msg.type == "query") {
         const { rec } = msg.task;
         console.log(rec);
-        const results = Engine.recommend(rec.result.response);
+       
+        const results = Engine.recommend(rec.response);
         parentPort.postMessage({ type: 'recommendResult', results });
     }
 });

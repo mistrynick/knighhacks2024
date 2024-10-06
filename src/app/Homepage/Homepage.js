@@ -24,12 +24,37 @@ import Cards from '../Cards/Cards.js';
 
 
 function Homepage() {
-      
+    var bp = require('/src/app/Path.js');
     const [ searchWord, setWord ] = useState(""); 
     const [ results, setResults ] = useState([]);
-    let { token } = useContext(AuthContext);
+    let { token, setToken } = useContext(AuthContext);
+
+    const refreshToken = async () => {
+      
+        const response = await fetch(bp.buildPath('api/refresh'), {
+            method: 'POST',
+            credentials: 'include',
+            headers: { "Content-Type": "application/json"},
+        });
+  
+        if (response.ok) {
+            const data = await response.json();
+            setToken(data.accessToken);
+            return data.accessToken;
+        } else {
+            return null;
+        }
+    };
+    
     async function search(term) {
+        if (!token) {
+            token = await refreshToken();
+        }
         try {
+            var obj = {
+                "prompt":term
+            }
+            let js = JSON.stringify(obj);
             const response = await fetch(bp.buildPath('api/query'), {
                     method:'POST',
                     body: js,
@@ -38,22 +63,24 @@ function Homepage() {
                         "authorization": token,
                     }
                 });
+                
                 var txt = await response.text();
                 var res = JSON.parse(txt);
                 var _results = res.results.ret;
-               
-                setResults(_results);
-                 
+                console.log(_results[0]);
+                
+                if (typeof _results != undefined) {
+                    setResults(_results);
+                }
 
-            
+               
           } catch (error) {
             console.log(error);
           }
     }
 
     const searchWrapper = async (searchword) => {
-        const data = await search(searchword);
-        setData(data);
+        await search(searchword);
       }
 
     return (
@@ -78,14 +105,28 @@ function Homepage() {
 
         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
         <SearchIcon sx={{ color: '#16405B', marginRight: 1 }} />
-            <TextField id="input-with-sx" label="Search" variant="standard" onChange={(e) => { setWord(e.target.value); }}/>
+            <TextField sx={{ width: '50vw'}} id="input-with-sx" label="Type a prompt" variant="standard" onChange={(e) => { setWord(e.target.value); }}/>
             <Button 
                 onClick={() => searchWrapper(searchWord)} 
                 sx={{ color: '#16405B', '&:hover': { backgroundColor: '#99c1dc' } }}
                 >
-                    Search
+                    Enter
                 </Button>
+        
         </Box>
+
+        <Box sx={{ width: '100%', bgcolor: '#FFFFFF', marginTop: '5vh', padding: '2vh', textAlign: 'center' }}>
+            {results.map((item) => (
+                <Cards
+                    productName={item.Name}
+                    productDescription={item.Description}
+                    productImage={item.images}
+                    productType={item.Category}
+                />
+            ))}
+            
+        </Box>
+        
 
 
         </>

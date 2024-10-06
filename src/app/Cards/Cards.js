@@ -4,7 +4,7 @@ import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 
-function Cards({productName, productDescription, productType, productLink}) {
+function Cards({productName, productDescription, productType, productLink, productImage}) {
     
     
     return (
@@ -14,19 +14,18 @@ function Cards({productName, productDescription, productType, productLink}) {
           <Box
               sx = {{
                 display: 'flex',
+                padding: '2vw',
                 flexDirection: 'column',
-                alignItems: 'center',  
-                justifyContent: 'center',
-                position: 'absolute',
-                left: '10vw',  
-                top: '8vh',   
+                alignItems: 'flex-start',  
+                justifyContent: 'center',  
                 transform: 'translateX(-10%)',  
-                width: '60vw'  
+                width: '40vw',
+                marginLeft: '5vw'
               }}
           >
-            <p>{productName}</p>
-            <p>{productDescription}</p>
-                
+            <p style={{ color: 'black', fontWeight: 'bold', fontSize: '1.2em' }}>{productName}</p>
+            <p style={{ color: 'black' }}>{productDescription}</p>
+            <img src={productImage} ></img>
             
           </Box>
           
