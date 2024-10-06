@@ -6,19 +6,21 @@ import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { useContext } from 'react';
 import Link from '@mui/material/Link';
-import Logo from "/images/mplogooo.png";
-import cart from "/images/cartt.png";
+import Logo from "../images/mplogooo.png";
+import cart from "../images/cartt.png";
 import CssBaseline from '@mui/material/CssBaseline';
 import swish from '/images/swish.png';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { AuthContext } from '/src/app/AuthContext.js';
 
 function Signin() {
     const router = useRouter();
     const [showError, willShowError] = useState(false); 
     const [message, setMessage] = useState(''); 
+    const { setToken } = useContext(AuthContext);
     const [isLoading ,setLoading] = useState(false);
     var bp = require('/src/app/Path.js');
 
@@ -46,6 +48,15 @@ function Signin() {
         console.log(response);
         let res = JSON.parse(await response.text());
         console.log(res);
+        if (res.hasOwnProperty('accessToken')) {
+          setToken(res.accessToken);
+          router.push('/Homepage');
+        }
+
+        else {
+          setMessage("Incorrect Email or Password");
+          console.log("failed login");
+        }
         /*
         if (res.hasOwnProperty('accessToken')) {
           setToken(res.accessToken);
