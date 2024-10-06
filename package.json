@@ -31,9 +31,5 @@
     "react-dom": "^18",
     "socket.io": "^4.8.0",
     "stopword": "^3.1.1"
-  },
-  "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.2.14"
   }
 }
