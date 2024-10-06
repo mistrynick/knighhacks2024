@@ -13,8 +13,8 @@ import swish from '../images/swish.png';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { AuthContext } from '/src/app/AuthContext.js';
 
 function Signin() {
@@ -124,9 +124,6 @@ function Signin() {
                   variant="outlined"
                   margin="normal"
                   className="customTextField"
-                  InputLabelProps={{
-                    style: { color: 'white' }
-                  }}
                 />
                 <TextField
                   fullWidth
@@ -138,9 +135,6 @@ function Signin() {
                   variant="outlined"
                   margin="normal"
                   className="customTextField"
-                  InputLabelProps={{
-                    style: { color: 'white' }
-                  }}
                 />
                 <Button 
                   variant="outlined" 
