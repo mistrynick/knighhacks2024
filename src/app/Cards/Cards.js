@@ -25,7 +25,7 @@ function Cards({productName, productDescription, productType, productLink, produ
           >
             <p style={{ color: 'black', fontWeight: 'bold', fontSize: '1.2em' }}>{productName}</p>
             <p style={{ color: 'black' }}>{productDescription}</p>
-            <img src={productImage} ></img>
+            <Image src={productImage} ></Image>
             
           </Box>
           

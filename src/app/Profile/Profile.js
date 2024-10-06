@@ -28,7 +28,7 @@ function Profile() {
                 //backgroundColor: '#16405B',
                 padding: '2rem'
             }}>
-                <img 
+                <Image 
                     className="logo"
                     src={Logo.src} 
                     alt="Logo"

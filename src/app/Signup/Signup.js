@@ -84,7 +84,7 @@ function Signup() {
               }}
           >
 
-                <img 
+                <Image 
                   className="logo"
                   src={Logo.src} 
                 />
@@ -160,14 +160,14 @@ function Signup() {
             
           </Box>
           
-          <img src={swish.src} class="swishDes"></img>
+          <Image src={swish.src} class="swishDes"></Image>
 
           <motion.div
             initial={{ opacity: 1, x: '110vw'}}
             animate={{ opacity: 1, x: '60vw'}}
             transition={{ duration: 1.75 }}
           >
-            <img src={cart.src} class="cartimg"></img>
+            <Image src={cart.src} class="cartimg"></Image>
           </motion.div>
           
         </React.Fragment>

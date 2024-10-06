@@ -9,11 +9,12 @@ import Link from '@mui/material/Link';
 import Logo from "../images/mplogooo.png";
 import cart from "../images/cartt.png";
 import CssBaseline from '@mui/material/CssBaseline';
-import swish from '/images/swish.png';
+import swish from '../images/swish.png';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { AuthContext } from '/src/app/AuthContext.js';
 
 function Signin() {
@@ -92,7 +93,7 @@ function Signin() {
               }}
           >
 
-                <img 
+                <Image 
                   className="logo"
                   src={Logo.src} 
                 />
@@ -157,14 +158,14 @@ function Signin() {
             
           </Box>
           
-          <img src={swish.src} class="swishDes"></img>
+          <Image src={swish.src} class="swishDes"></Image>
 
           <motion.div
             initial={{ opacity: 1, x: '110vw'}}
             animate={{ opacity: 1, x: '60vw'}}
             transition={{ duration: 1.75 }}
           >
-            <img src={cart.src} class="cartimg"></img>
+            <Image src={cart.src} class="cartimg"></Image>
           </motion.div>
           
         </React.Fragment>

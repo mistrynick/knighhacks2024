@@ -91,7 +91,7 @@ function Homepage() {
             >
             </Box>
 
-            <img
+            <Image
                  className="logo"
                  src={Logo.src}
             />
