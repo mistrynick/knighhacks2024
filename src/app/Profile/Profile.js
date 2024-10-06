@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Logo from '../images/mplogooo.png';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 function Profile() {
