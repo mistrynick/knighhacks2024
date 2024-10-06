@@ -1,4 +1,4 @@
-const app_name = 'url';
+const app_name = 'https://mistryproject-a847f1548531.herokuapp.com/';
 exports.buildPath = 
 function buildPath(route)
 {
