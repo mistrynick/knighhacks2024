@@ -5,10 +5,10 @@ import styles from "./styles.css";
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { useContext } from 'react';
-import Logo from "/images/mplogooo.png";
-import cart from "/images/cartt.png";
+import Logo from "../images/mplogooo.png";
+import cart from "../images/cartt.png";
 import CssBaseline from '@mui/material/CssBaseline';
-import swish from '/images/swish.png';
+import swish from '../images/swish.png';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
@@ -44,9 +44,11 @@ function Signup() {
             credentials: "include",
           }
         );
-        console.log(response);
         let res = JSON.parse(await response.text());
-        console.log(res);
+        
+        if (res.error == "") {
+          router.push("/Signin");
+        }
         /*
         if (res.hasOwnProperty('accessToken')) {
           setToken(res.accessToken);

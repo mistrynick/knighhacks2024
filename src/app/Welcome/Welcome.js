@@ -2,13 +2,13 @@
 
 import * as React from 'react';
 import styles from "./styles.css";
-import Logo from "/images/mplogooo.png";
+import Logo from "../images/mplogooo.png";
 import Box from '@mui/material/Box';
-import cart from "/images/cartt.png";
+import cart from "../images/cartt.png";
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import swish from '/images/swish.png';
+import swish from '../images/swish.png';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { motion } from 'framer-motion';

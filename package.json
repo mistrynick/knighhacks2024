@@ -14,17 +14,21 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.2",
     "@mui/material": "^6.1.2",
+    "@mui/material-nextjs": "^6.1.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "framer-motion": "^11.11.1",
     "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.9.0",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",
-    "socket.io": "^4.8.0"
+    "socket.io": "^4.8.0",
+    "stopword": "^3.1.1"
   },
   "devDependencies": {
     "eslint": "^8",
