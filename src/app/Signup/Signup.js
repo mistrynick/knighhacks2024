@@ -5,17 +5,17 @@ import styles from "./styles.css";
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { useContext } from 'react';
-import Link from '@mui/material/Link';
 import Logo from "/images/mplogooo.png";
 import cart from "/images/cartt.png";
 import CssBaseline from '@mui/material/CssBaseline';
 import swish from '/images/swish.png';
 import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-function Signin() {
+function Signup() {
     const router = useRouter();
     const [showError, willShowError] = useState(false); 
     const [message, setMessage] = useState(''); 
@@ -29,13 +29,14 @@ function Signin() {
     
     
         let obj = {
-          email: data.get('email'),
-          password: data.get('password')
+            username: data.get('username'),
+            email: data.get('email'),
+            password: data.get('password'),
         };
         let js = JSON.stringify(obj);
     
         const response = await fetch(
-          bp.buildPath('api/login'),
+          bp.buildPath('api/signup'),
           {
             method: 'POST',
             body: js,
@@ -119,6 +120,19 @@ function Signin() {
                 <TextField
                   fullWidth
                   required
+                  id="username"
+                  name="username"
+                  label="Username"
+                  variant="outlined"
+                  margin="normal"
+                  className="customTextField"
+                  InputLabelProps={{
+                    style: { color: 'white' }
+                  }}
+                />
+                <TextField
+                  fullWidth
+                  required
                   label="Password"
                   name="password"
                   type="password"
@@ -135,14 +149,12 @@ function Signin() {
                   type="submit"
                   className="customButton"
                 >
-                  Sign In
+                  Sign Up
                 </Button>
               </Box>
-
-              <Link href="../Signup" sx={{ color: 'white', marginTop: '1vh'}}>
-                  Don't have an account? Sign up
+            <Link href="../Signin" sx={{ color: 'white', marginTop: '1vh'}}>
+                  Already have an account? Sign in
             </Link>
-            
             
           </Box>
           
@@ -160,4 +172,4 @@ function Signin() {
     );
 }
 
-export default Signin;
+export default Signup;

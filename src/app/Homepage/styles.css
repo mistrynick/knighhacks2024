@@ -7,7 +7,7 @@ body {
     background-attachment: fixed;
     margin:0;
     padding:0;
-    background-image: linear-gradient(to right, #16405B, #609EC6);
+    background-color: white;
 }
 
 .container {
@@ -19,13 +19,11 @@ body {
 }
 
 .logo {
-    width: 24%;
+    width: 18%;
     justify-content: center;
     align-items: center;
     display: flex;
     text-align: center;
-    margin-top: 6vh;
-    margin-bottom: 8vh;
 }
 
 img {
@@ -33,7 +31,7 @@ img {
     max-width: 100%;
     min-width: 20vw;
     height: auto;
-    margin-left: -1vw;
+    margin-left: 1vw;
 }
 
 .swishDes {

@@ -63,7 +63,7 @@ function Welcome() {
 
               <ButtonGroup variant="outlined" aria-label="Basic button group">
                 <Button onClick= {SignIn} className="customButton">Sign In</Button>
-                <Button className="customButton">Sign Up</Button>
+                <Button onClick= {SignUp}className="customButton">Sign Up</Button>
             </ButtonGroup>
               
           </Box>
