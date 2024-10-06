@@ -3,6 +3,7 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Image from 'next/image';
 
 function Cards({productName, productDescription, productType, productLink, productImage}) {
     
