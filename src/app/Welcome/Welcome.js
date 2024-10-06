@@ -11,6 +11,7 @@ import Divider from '@mui/material/Divider';
 import swish from '../images/swish.png';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 
