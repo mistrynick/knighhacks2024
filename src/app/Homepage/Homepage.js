@@ -119,6 +119,7 @@ function Homepage() {
         <Box sx={{ width: '100%', bgcolor: '#FFFFFF', marginTop: '5vh', padding: '2vh', textAlign: 'center' }}>
             {results.map((item) => (
                 <Cards
+                    key={item.id}
                     productName={item.Name}
                     productDescription={item.Description}
                     productImage={item.images}
